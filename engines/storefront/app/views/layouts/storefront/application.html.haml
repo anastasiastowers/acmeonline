@@ -8,6 +8,26 @@
     = stylesheet_link_tag    "storefront/application", media: "all"
     = javascript_include_tag "storefront/application"
   %body
-    %p.notice= notice
-    %p.alert= alert
-    = yield
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      = link_to 'Acme Online', root_path, class: 'navbar-brand'
+      %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      #navbarSupportedContent.collapse.navbar-collapse
+        %ul.navbar-nav.mr-auto
+          - if customer_signed_in?
+            %li.nav-item.dropdown
+              %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+                = current_customer.name || current_customer.email
+              .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+                = link_to 'Account', edit_customer_registration_path, class: 'dropdown-item'
+                .dropdown-divider
+                = link_to 'Sign Out', destroy_customer_session_path, method: :delete, class: 'dropdown-item'
+          - else
+            %li.nav-item
+              = link_to 'Login', new_customer_session_path, class: 'nav-link'
+            %li.nav-item
+              = link_to 'Sign Up', new_customer_registration_path, class: 'nav-link'
+    .container
+      %p.notice= notice
+      %p.alert= alert
+      = yield
