@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %title Templates
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    "templates/application", media: "all"
+    = javascript_include_tag "templates/application"
+  %body
+    = yield
