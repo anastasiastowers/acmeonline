@@ -1,3 +1,4 @@
+require 'devise'
 require "storefront/engine"
 
 module Storefront
