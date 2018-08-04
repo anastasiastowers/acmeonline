@@ -13,4 +13,6 @@ Storefront::Engine.routes.draw do
     put    'signup'  => 'customers/registrations#update', as: :update_customer_registration
     get    'account' => 'customers/registrations#edit',   as: :edit_customer_registration
   end
+
+  get 'checkout', to: 'home#checkout'
 end

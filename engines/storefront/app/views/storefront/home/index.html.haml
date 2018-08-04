@@ -1,3 +1,29 @@
-Storefront home page
-.alert.alert-primary{role: "alert"}
-  A simple primary alert—check it out!
+.row
+  .card-deck
+    .card.text-center
+      .card-body
+        %h5.card-title Bronze Box
+        %p.card-text Our basic box, but it's still good.
+        %p
+          %small.text-muted $19.99/mo
+      .card-footer
+        = link_to checkout_path(selected_product: :bronze_box) do
+          %button.btn.btn-primary Get the Box
+    .card.text-center
+      .card-body
+        %h5.card-title Silver Box
+        %p.card-text Everything in our Bronze Box, plus a bit more.
+        %p
+          %small.text-muted $40.00/mo
+      .card-footer
+        = link_to checkout_path(selected_product: :silver_box) do
+          %button.btn.btn-primary Get the Box
+    .card.text-center
+      .card-body
+        %h5.card-title Gold Box
+        %p.card-text Everything in our Silver Box, plus a whole lots more.
+        %p
+          %small.text-muted $90.00/mo
+      .card-footer
+        = link_to checkout_path(selected_product: :gold_box) do
+          %button.btn.btn-primary Get the Box

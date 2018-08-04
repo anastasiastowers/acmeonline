@@ -1,0 +1,102 @@
+%h2 Get the Box
+= form_with url: '/new-subscription', class: 'card' do |form|
+  .card-body
+    .form-group
+      = form.label :name do
+        Name
+        %span *
+      = form.text_field :name, class: 'form-control', value: "#{current_customer.name}", required: true
+    .form-group
+      = form.label :product do
+        Pick a Box
+        %span *
+      = form.select :product, product_options(@selected_product), {}, {class: 'form-control'}
+
+    = form.fields_for :shipping do |shipping|
+      %strong
+        %p Shipping Address
+      .form-group
+        = shipping.label :address_1 do
+          Address 1
+          %span *
+        = shipping.text_field :address_1, class: 'form-control', placeholder: '1234 Main St', required: true
+      .form-group
+        = shipping.label :address_2 do
+          Address 2
+          %span *
+        = shipping.text_field :address_2, class: 'form-control', placeholder: 'Apartment, studio, or floor', required: true
+      .form-row
+        .form-group.col-md-6
+          = shipping.label :city do
+            City
+            %span *
+          = shipping.text_field :shipping_city, class: 'form-control', required: true
+        .form-group.col-md-4
+          = shipping.label :state do
+            State
+            %span *
+          = shipping.select :state, state_options, {}, {class: 'form-control', required: true}
+        .form-group.col-md-2
+          = shipping.label :zip_code do
+            Zip
+            %span *
+          = shipping.text_field :zip_code, class: 'form-control', required: true
+
+    = form.fields_for :billing do |billing|
+      %strong
+        %p Billing Address
+      .form-group
+        = billing.label :address_1 do
+          Address 1
+          %span *
+        = billing.text_field :address_1, class: 'form-control', placeholder: '1234 Main St', required: true
+      .form-group
+        = billing.label :address_2 do
+          Address 2
+          %span *
+        = billing.text_field :address_2, class: 'form-control', placeholder: 'Apartment, studio, or floor', required: true
+      .form-row
+        .form-group.col-md-6
+          = billing.label :city do
+            City
+            %span *
+          = billing.text_field :city, class: 'form-control', required: true
+        .form-group.col-md-4
+          = billing.label :state do
+            State
+            %span *
+          = billing.select :state, state_options, {}, {class: 'form-control', required: true}
+        .form-group.col-md-2
+          = billing.label :zip_code do
+            Zip
+            %span *
+          = billing.text_field :zip_code, class: 'form-control', required: true
+
+    = form.fields_for :credit_card do |credit_card|
+      %strong
+        %p Credit Card Information
+      .form-row
+        .form-group.col-md-6
+          = credit_card.label :number do
+            Card Number
+            %span *
+          = credit_card.text_field :number, class: 'form-control', required: true
+        .form-group.col-md-2
+          = credit_card.label :expiration_month do
+            Exp. Month
+            %span *
+          = credit_card.text_field :expiration_month, class: 'form-control', placeholder: 'MM', required: true
+        .form-group.col-md-2
+          = credit_card.label :expiration_year do
+            Exp. Year
+            %span *
+          = credit_card.text_field :expiration_year, class: 'form-control', placeholder: 'YYYY', required: true
+        .form-group.col-md-2
+          = credit_card.label :cvv do
+            CVV
+            %span *
+          = credit_card.text_field :cvv, class: 'form-control', required: true
+
+
+
+    %button.btn.btn-primary{type: "submit"} Submit
