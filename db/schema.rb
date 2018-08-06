@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_04_233936) do
+ActiveRecord::Schema.define(version: 2018_08_05_214323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,31 @@ ActiveRecord::Schema.define(version: 2018_08_04_233936) do
     t.string "token", default: "", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "payments_plans", force: :cascade do |t|
+    t.string "name"
+    t.string "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments_subscribers", force: :cascade do |t|
+    t.string "customer_id", default: "", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "payments_subscriptions", force: :cascade do |t|
+    t.string "fakepay_token", default: "", null: false
+    t.integer "billing_frequency", default: 0, null: false
+    t.boolean "active", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "payments_subscriber_id"
+    t.bigint "payments_plan_id"
+    t.index ["payments_plan_id"], name: "index_payments_subscriptions_on_payments_plan_id"
+    t.index ["payments_subscriber_id"], name: "index_payments_subscriptions_on_payments_subscriber_id"
   end
 
   create_table "storefront_customers", force: :cascade do |t|
@@ -45,4 +70,6 @@ ActiveRecord::Schema.define(version: 2018_08_04_233936) do
     t.index ["reset_password_token"], name: "index_storefront_customers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "payments_subscriptions", "payments_plans"
+  add_foreign_key "payments_subscriptions", "payments_subscribers"
 end
