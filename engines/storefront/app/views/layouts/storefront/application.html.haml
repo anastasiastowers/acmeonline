@@ -8,7 +8,7 @@
     = stylesheet_link_tag    "storefront/application", media: "all"
     = javascript_include_tag "storefront/application"
   %body
-    %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-light.mb-5
       = link_to 'Acme Online', root_path, class: 'navbar-brand'
       %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
         %span.navbar-toggler-icon
@@ -28,6 +28,8 @@
             %li.nav-item
               = link_to 'Sign Up', new_customer_registration_path, class: 'nav-link'
     .container.pb-5
-      %p.notice= notice
-      %p.alert= alert
+      - if notice
+        %p.notice.alert.alert-primary= notice
+      - if alert
+        %p.alert.alert-danger= alert
       = yield
