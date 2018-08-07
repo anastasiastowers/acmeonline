@@ -15,3 +15,6 @@ gemspec
 # gem 'byebug', group: [:development, :test]
 
 gem 'templates', path: '../templates'
+gem 'sidekiq'
+gem 'redis'
+gem 'redis-namespace'

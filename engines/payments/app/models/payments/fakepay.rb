@@ -9,11 +9,11 @@ module Payments
         'Authorization' => "Token token=#{Rails.application.secrets.fakepay_API_key}"
     }
 
-    attr_accessor :amount, :token, :card_number, :cvv, :expiration_month, :expiration_year, :zip_code
+    attr_accessor :amount, :fakepay_token, :card_number, :cvv, :expiration_month, :expiration_year, :zip_code
 
-    def initialize(token: nil, amount: '', card_number: '', cvv: '', expiration_month: '', expiration_year: '', zip_code: '')
+    def initialize(fakepay_token: nil, amount: '', card_number: '', cvv: '', expiration_month: '', expiration_year: '', zip_code: '')
       @amount = amount
-      @token = token
+      @fakepay_token = fakepay_token
       @card_number = card_number
       @cvv = cvv
       @expiration_month = expiration_month
@@ -22,10 +22,10 @@ module Payments
     end
 
     def purchase
-      data = if @token
+      data = if @fakepay_token
                 {
                     amount: @amount,
-                    token: @token
+                    token: @fakepay_token
                 }
              else
                {

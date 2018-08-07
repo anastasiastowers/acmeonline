@@ -19,6 +19,8 @@ module Payments
         errors = @subscription.errors.full_messages.join('. ')
         json_response({ error_message: errors, code: :invalid_subscription }, status: 400)
       end
+      @subscription.save
+
     end
 
     def show
@@ -45,7 +47,7 @@ module Payments
     end
 
     def subscription_params
-      params.permit(:active, :token, :customer_id, :card_number, :cvv, :expiration_month, :expiration_year, :zip_code)
+      params.permit(:active, :fakepay_token, :customer_id, :card_number, :cvv, :expiration_month, :expiration_year, :zip_code)
     end
 
     def set_subscriber
