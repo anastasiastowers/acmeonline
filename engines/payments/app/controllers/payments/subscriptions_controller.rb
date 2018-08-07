@@ -43,7 +43,7 @@ module Payments
     private
 
     def set_subscription
-      @subscription = Subscription.find(params[:id])
+      @subscription = Subscription.eager_load(:payments_plan, :payments_subscriber).find(params[:id])
     end
 
     def subscription_params
