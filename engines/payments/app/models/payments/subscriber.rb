@@ -5,14 +5,13 @@ module Payments
     validates :customer_id, presence: true, numericality: { only_integer: true }
 
     def package_details
-      subscriptions = payments_subscriptions
+      subscriptions_data = self.subscriptions.each_with_object({}).with_index do |(subscription, subscriptions_data), index|
+        attributes = subscription.attributes
+        attributes[:plan] = subscription.payments_plan.attributes
+        subscriptions_data[index] = attributes
+      end
 
-      {
-          subscriber: attributes,
-          subscriptions: {
-
-          }
-      }
+      { subscriber: attributes, subscriptions: subscriptions_data }
     end
   end
 end
