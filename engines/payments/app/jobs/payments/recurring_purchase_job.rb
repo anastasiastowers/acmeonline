@@ -4,6 +4,7 @@ module Payments
 
     def perform(subscription_id)
       @subscription = Payments::Subscription.find_by(id: subscription_id)
+      return unless @subscription.active
       response = @subscription.make_payment
       # TODO: Send email to subscriber that payment was accepted
 

@@ -1,11 +1,17 @@
 %h2 Get the Box
-= form_with url: '/new-subscription', class: 'card' do |form|
+= form_with url: new_subscription_path, class: 'card' do |form|
   .card-body
     .form-group
       = form.label :name do
         Name
         %span *
       = form.text_field :name, class: 'form-control', value: "#{current_customer.name}", required: true
+    .hidden
+      .form-group
+        = form.label :customer_id do
+          Customer Id
+          %span *
+        = form.text_field :customer_id, class: 'form-control', value: "#{current_customer.id}", required: true
     .form-group
       = form.label :product do
         Pick a Box
@@ -30,7 +36,7 @@
           = shipping.label :city do
             City
             %span *
-          = shipping.text_field :shipping_city, class: 'form-control', required: true
+          = shipping.text_field :city, class: 'form-control', required: true
         .form-group.col-md-4
           = shipping.label :state do
             State
@@ -99,4 +105,4 @@
 
 
 
-    %button.btn.btn-primary{type: "submit"} Submit
+    %button.btn.btn-primary{type: 'submit'} Submit

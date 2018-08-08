@@ -57,6 +57,7 @@ module Payments
       self.amount = self.payments_plan.price
 
       fakepay = Fakepay.new **payment_data
+
       response = fakepay.purchase
 
       if response['success']

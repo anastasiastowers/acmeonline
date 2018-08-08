@@ -47,7 +47,11 @@ module Payments
     end
 
     def subscription_params
-      params.permit(:active, :fakepay_token, :customer_id, :card_number, :cvv, :expiration_month, :expiration_year, :zip_code)
+      params.permit(:fakepay_token, :customer_id, :card_number, :cvv, :expiration_month, :expiration_year, :zip_code)
+    end
+
+    def update_subscription_params
+      params.permit(:active)
     end
 
     def set_subscriber

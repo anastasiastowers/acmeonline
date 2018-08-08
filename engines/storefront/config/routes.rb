@@ -20,4 +20,5 @@ Storefront::Engine.routes.draw do
   end
 
   get 'checkout', to: 'home#checkout'
+  post 'new-subscription', to: 'customers#new_subscription', as: :new_subscription
 end

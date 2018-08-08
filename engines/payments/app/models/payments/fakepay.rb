@@ -22,7 +22,7 @@ module Payments
     end
 
     def purchase
-      data = if @fakepay_token
+      data = if @fakepay_token.present?
                 {
                     amount: @amount,
                     token: @fakepay_token
@@ -37,6 +37,8 @@ module Payments
                    zip_code: @zip_code
                }
              end
+
+      binding.pry
 
       request = Net::HTTP::Post.new(host_uri.request_uri, HEADERS)
       request.body = data.to_json
