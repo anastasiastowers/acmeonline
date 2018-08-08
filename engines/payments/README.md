@@ -1,5 +1,5 @@
 # Acme Online Payments API
-Make payments and set up recurring billing for Acme Online.
+Make payments and set up recurring billing for Acme Online. Relies on the [Fakepay API](https://www.fakepay.io/).
 
 ## Usage
 
