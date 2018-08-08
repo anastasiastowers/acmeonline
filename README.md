@@ -17,7 +17,7 @@ The Templates Engine holds all shared styles (CSS).
 1. Run `bundle install`
 2. Run `rake db:create db:migrate db:seed`
 3. From the rails console run `Payments::ApiKey.create(name:'development_key'')`. Use the returned token in any curl commands to the Payments Engine as detailed in the Payments Engine README.md
-4. Create /config/secrets.yml and define `fakepay_API_key: 'your_fakepay_API_key'` under a development or shared scope
+4. Duplicate the file `/config/secrets.yml.lock` and rename to `secrets.yml`. Set the value of `fakepay_API_key` to your Fakepay API Key.
 5. Add the following to your /etc/hosts file:
 ```
 127.0.0.1	acmeonline.local
