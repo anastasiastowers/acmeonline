@@ -38,8 +38,6 @@ module Payments
                }
              end
 
-      binding.pry
-
       request = Net::HTTP::Post.new(host_uri.request_uri, HEADERS)
       request.body = data.to_json
       response = client.request(request)
