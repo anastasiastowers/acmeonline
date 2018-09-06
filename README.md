@@ -1,6 +1,6 @@
 # Acme Online
 
-A response to a [challenge](https://gist.github.com/speric/bef88f6d0276e762316a073da81bbd35) issued by Chargify.
+A response to a coding challenge.
 
 ## App Structure
 
